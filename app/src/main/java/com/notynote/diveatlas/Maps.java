@@ -42,11 +42,25 @@ public class Maps extends Fragment implements OnMapReadyCallback, GoogleMap.OnIn
         mMap = googleMap;
 
         LatLng Pak1 = new LatLng(12.0917,101.6822);
+        LatLng Hardeep = new LatLng(12.5425,100.9624);
+        LatLng KohRang = new LatLng(11.8056, 102.3911);
+        LatLng HinLukBat = new LatLng(11.943944636888816, 102.27224349975586);
+        LatLng ChangWreck = new LatLng(11.90044339282193, 102.25919723510744);
         //mMap.addMarker(new MarkerOptions().position(Pak1).title("Pak-1 wreck").snippet("Type: Wreck\nDepth: 30 - 42 meters"));
-        Marker pak1 = mMap.addMarker(new MarkerOptions().position(Pak1).title("Pak-1").snippet("Type: Wreck"));
+
+        Marker pak1 = mMap.addMarker(new MarkerOptions().position(Pak1).title("Pak-1").snippet("Coor: 12.0917,101.6822"));
+        Marker hardeep = mMap.addMarker(new MarkerOptions().position(Hardeep).title("Hardeep Wreck").snippet("Coor: 12.5425,100.9624"));
+        Marker kohrang = mMap.addMarker(new MarkerOptions().position(KohRang).title("Koh Rang").snippet("Coor: 11.8056, 102.3911"));
+        Marker hinlukbat = mMap.addMarker(new MarkerOptions().position(HinLukBat).title("Hin Luk Bat").snippet("Coor: 11.9439, 102.2722"));
+        Marker changwreck = mMap.addMarker(new MarkerOptions().position(ChangWreck).title("HTMS Chang Wreck").snippet("Coor: 11.9004, 102.2592"));
+
+        //show Info Windows by default
         //pak1.showInfoWindow();
+
+        //set default camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(Pak1));
 
+        //activate onInfoWindowClickListener
         mMap.setOnInfoWindowClickListener(this);
     }
 
