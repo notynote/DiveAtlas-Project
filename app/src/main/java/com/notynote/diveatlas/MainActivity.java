@@ -80,9 +80,6 @@ public class MainActivity extends AppCompatActivity {
         //commit the change
         ft.commit();
 
-
-
-
     }
 
 }

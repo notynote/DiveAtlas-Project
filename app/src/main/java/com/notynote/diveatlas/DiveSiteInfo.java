@@ -1,19 +1,21 @@
 package com.notynote.diveatlas;
 
 public class DiveSiteInfo {
-    private String diveSiteName;
-    private String diveSiteType;
-    private String diveSiteDepth;
-    private String diveSiteCoor;
-    private String diveSiteBio;
+    String diveSiteName;
+    String diveSiteType;
+    String diveSiteDepth;
+    String diveSiteCoor;
+    String diveSiteBio;
+    String image;
 
     //constructor
-    public DiveSiteInfo (String name, String type, String depth, String coor, String bio){
+    public DiveSiteInfo (String name, String type, String depth, String coor, String bio, String imgurl){
         this.diveSiteName = name;
         this.diveSiteType = type;
         this.diveSiteDepth = depth;
         this.diveSiteCoor = coor;
         this.diveSiteBio = bio;
+        this.image = imgurl;
     }
 
     public String getDiveSiteName() {
@@ -54,5 +56,13 @@ public class DiveSiteInfo {
 
     public void setDiveSiteBio(String diveSiteBio) {
         this.diveSiteBio = diveSiteBio;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

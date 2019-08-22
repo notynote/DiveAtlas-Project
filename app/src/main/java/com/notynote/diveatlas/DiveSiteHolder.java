@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 
 public class DiveSiteHolder extends RecyclerView.ViewHolder {
 
@@ -22,7 +24,7 @@ public class DiveSiteHolder extends RecyclerView.ViewHolder {
         txtDepth = itemView.findViewById(R.id.txtDepth);
         txtCoor = itemView.findViewById(R.id.txtCoor);
         txtBio = itemView.findViewById(R.id.txtBio);
-        imageView = itemView.findViewById(R.id.thumbnail);
+        imageView = itemView.findViewById(R.id.rImageVIew);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,5 +40,30 @@ public class DiveSiteHolder extends RecyclerView.ViewHolder {
         txtDepth.setText("Depth : " + diveSiteInfo.getDiveSiteDepth() + " meters");
         txtCoor.setText("Coordinate : " + diveSiteInfo.getDiveSiteCoor());
         txtBio.setText(diveSiteInfo.getDiveSiteBio());
+        Picasso.get().load(diveSiteInfo.getImage()).into(imageView);
+    }
+
+    public void setImage(String imgUrl){
+        Picasso.get().load(imgUrl).into(imageView);
+    }
+
+    public void setTxtName(TextView txtName) {
+        this.txtName = txtName;
+    }
+
+    public void setTxtType(TextView txtType) {
+        this.txtType = txtType;
+    }
+
+    public void setTxtDepth(TextView txtDepth) {
+        this.txtDepth = txtDepth;
+    }
+
+    public void setTxtCoor(TextView txtCoor) {
+        this.txtCoor = txtCoor;
+    }
+
+    public void setTxtBio(TextView txtBio) {
+        this.txtBio = txtBio;
     }
 }
