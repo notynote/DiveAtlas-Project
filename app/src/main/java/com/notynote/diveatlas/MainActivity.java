@@ -3,6 +3,8 @@ package com.notynote.diveatlas;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
@@ -15,6 +17,10 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+
     private TextView mTextMessage;
     FragmentManager fm = getSupportFragmentManager();
 
@@ -51,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
@@ -67,7 +77,13 @@ public class MainActivity extends AppCompatActivity {
                 frag = new DiveSite();
                 break;
             case R.id.navigation_profile:
-                frag = new ProfilePage();
+                //update current user
+                firebaseUser = firebaseAuth.getCurrentUser();
+                if(firebaseUser != null){
+                    frag = new userProfile();
+                } else {
+                    frag = new ProfilePage();
+                }
                 break;
         }
 

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "947786091070",
+    "firebase_url": "https://diveatlas-project.firebaseio.com",
+    "project_id": "diveatlas-project",
+    "storage_bucket": "diveatlas-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947786091070:android:16a08d6b8c27db20",
+        "android_client_info": {
+          "package_name": "com.notynote.diveatlas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947786091070-s6vmtc3k0lad39rcubli6ir24dgapie9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.notynote.diveatlas",
+            "certificate_hash": "1e98781417adf565dc9a33a85cedd397ddd8aca5"
+          }
+        },
+        {
+          "client_id": "947786091070-qfa2lr17q5827jd1k3fhnh5dsi9q2cig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA22p6JWPDUnYfipjJ-V6Cherj9IZ9u1-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947786091070-qfa2lr17q5827jd1k3fhnh5dsi9q2cig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
