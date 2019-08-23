@@ -6,6 +6,9 @@
     android:background="#FAFAFA"
     tools:context=".Home">
 
+
+<!--    <include layout="@layout/toolbar" />-->
+
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"

@@ -26,6 +26,11 @@ public class DiveSiteAdapter extends RecyclerView.Adapter<DiveSiteHolder> {
         return diveSites.size();
     }
 
+    public void filterList(ArrayList<DiveSiteInfo> filteredDiveSite){
+        diveSites = filteredDiveSite;
+        notifyDataSetChanged();
+    }
+
     @Override
     public DiveSiteHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_row, parent, false);

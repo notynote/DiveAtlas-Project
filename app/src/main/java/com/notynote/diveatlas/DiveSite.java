@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -34,11 +37,31 @@ public class DiveSite extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_dive_site, container, false);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
+        //Filter box
+        EditText editText = view.findViewById(R.id.editText);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filter(editable.toString());
+            }
+        });
+
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         diveSiteInfoArrayList = new ArrayList<>();
 
@@ -73,6 +96,18 @@ public class DiveSite extends Fragment {
         createListData();
 
         return view;
+    }
+
+    private void filter(String text){
+        ArrayList<DiveSiteInfo> filteredDiveSite = new ArrayList<>();
+
+        for (DiveSiteInfo sites : diveSiteInfoArrayList){
+            if (sites.getDiveSiteName().toLowerCase().contains(text.toLowerCase())){
+                filteredDiveSite.add(sites);
+            }
+        }
+
+        adapter.filterList(filteredDiveSite);
     }
 
     private void createListData() {
