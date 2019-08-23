@@ -22,6 +22,7 @@ public class ProfilePage extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile_page, container, false);
 
         Button signUp = (Button)view.findViewById(R.id.signUp);
+        //change frag on click
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

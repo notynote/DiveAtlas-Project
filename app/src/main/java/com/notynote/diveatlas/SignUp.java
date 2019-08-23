@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,20 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.regex.Pattern;
+
 
 public class SignUp extends Fragment {
+
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^" +
+            "(?=.*[0-9])" +         //at least 1 digit
+            "(?=.*[a-z])" +         //at least 1 lower case letter
+            "(?=.*[A-Z])" +         //at least 1 upper case letter
+            //"(?=.*[a-zA-Z])" +      //any letter
+            //"(?=.*[@#$%^&+=!])" +    //at least 1 special character
+            "(?=\\S+$)" +           //no white spaces
+            ".{8,}" +               //at least 8 characters
+            "$");
 
     //UI Variable
     private TextInputLayout textInputUsername;
@@ -64,6 +77,9 @@ public class SignUp extends Fragment {
         if (emailInput.isEmpty()){
             textInputEmail.setError("Email can't be empty");
             return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
+            textInputEmail.setError("Please enter valid email address");
+            return false;
         } else {
             textInputEmail.setError(null);
             return true;
@@ -90,6 +106,9 @@ public class SignUp extends Fragment {
 
         if (passwordInput.isEmpty()){
             textInputPassword.setError("Password can't be empty");
+            return false;
+        } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()){
+            textInputPassword.setError("Password too weak");
             return false;
         } else if (passwordInput.length() > 20){
             textInputPassword.setError("Password too long");
