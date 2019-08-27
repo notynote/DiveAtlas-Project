@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +39,7 @@ public class userProfile extends Fragment {
     TextView userCertNo;
     TextView userCertAgent;
     Button userLogOut;
+    ProgressBar loadingBar;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -51,6 +53,10 @@ public class userProfile extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
+
+        loadingBar = (ProgressBar) view.findViewById(R.id.LoadingBar);
+
+        loadingBar.setVisibility(View.VISIBLE);
 
         userDataLayout = (LinearLayout)view.findViewById(R.id.userDataLayout);
         userEmail = (TextView)view.findViewById(R.id.tvUserEmail);
@@ -88,7 +94,14 @@ public class userProfile extends Fragment {
                 userCertAgent.setText("Issue by: " + certagent);
                 userPhone.setText("Phone: " + phone);
 
-                userDataLayout.setVisibility(View.VISIBLE);
+                loadingBar.setVisibility(View.GONE);
+                userName.setVisibility(View.VISIBLE);
+                userEmail.setVisibility(View.VISIBLE);
+                userCertAgent.setVisibility(View.VISIBLE);
+                userCertLevel.setVisibility(View.VISIBLE);
+                userCertNo.setVisibility(View.VISIBLE);
+                userPhone.setVisibility(View.VISIBLE);
+                userLogOut.setVisibility(View.VISIBLE);
             }
 
             @Override
