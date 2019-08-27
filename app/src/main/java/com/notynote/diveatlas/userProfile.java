@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +30,7 @@ public class userProfile extends Fragment {
 
     //UI variable
 
-
+    LinearLayout userDataLayout;
     TextView userEmail;
     TextView userName;
     TextView userPhone;
@@ -51,6 +52,7 @@ public class userProfile extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
 
+        userDataLayout = (LinearLayout)view.findViewById(R.id.userDataLayout);
         userEmail = (TextView)view.findViewById(R.id.tvUserEmail);
         userName = (TextView)view.findViewById(R.id.tvUserName);
         userPhone = (TextView)view.findViewById(R.id.tvUserPhone);
@@ -85,6 +87,8 @@ public class userProfile extends Fragment {
                 userCertNo.setText("Number: " + certnumber);
                 userCertAgent.setText("Issue by: " + certagent);
                 userPhone.setText("Phone: " + phone);
+
+                userDataLayout.setVisibility(View.VISIBLE);
             }
 
             @Override

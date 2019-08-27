@@ -8,12 +8,13 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/some_field_in_form_layout"
+        android:id="@+id/userDataLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:visibility="invisible">
 
         <TextView
             android:id="@+id/tvUserName"
