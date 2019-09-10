@@ -5,16 +5,20 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +28,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
 import java.util.Map;
 
 public class userProfile extends Fragment {
@@ -40,6 +46,9 @@ public class userProfile extends Fragment {
     TextView userCertAgent;
     Button userLogOut;
     ProgressBar loadingBar;
+    TextView userGreeting;
+    RelativeLayout userDetailLayout;
+    ImageButton profileImage;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -47,6 +56,10 @@ public class userProfile extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference dRef;
     String userID;
+
+    Calendar cal;
+    int timeOfDay;
+    String greet;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,6 +78,24 @@ public class userProfile extends Fragment {
         userCertLevel = (TextView)view.findViewById(R.id.tvUserDiverLevel);
         userCertNo = (TextView)view.findViewById(R.id.tvUserDiveNumber);
         userCertAgent = (TextView)view.findViewById(R.id.tvUserDiveAgent);
+        userGreeting = view.findViewById(R.id.userGreeting);
+        userDetailLayout = view.findViewById(R.id.userDetailLayout);
+
+        //image profile
+        profileImage = view.findViewById(R.id.ProfileImage);
+
+        cal = Calendar.getInstance();
+        timeOfDay = cal.get(Calendar.HOUR_OF_DAY);
+
+        if(timeOfDay >= 0 && timeOfDay < 12){
+            greet = "Good Morning";
+        }else if(timeOfDay >= 12 && timeOfDay < 16){
+            greet = "Good Afternoon";
+        }else if(timeOfDay >= 16 && timeOfDay < 21){
+            greet = "Good Evening";
+        }else if(timeOfDay >= 21 && timeOfDay < 24){
+            greet = "Good Night";
+        }
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -87,14 +118,35 @@ public class userProfile extends Fragment {
                 String certlevel = String.valueOf(map.get("certLevel"));
                 String certnumber = String.valueOf(map.get("certNo"));
                 String certagent = String.valueOf(map.get("certAgent"));
+                String profileImg = String.valueOf(map.get("imageUrl"));
 
-                userName.setText("Welcome " + firstname + " " + lastname);
-                userCertLevel.setText(certlevel + " Diver");
-                userCertNo.setText("Number: " + certnumber);
-                userCertAgent.setText("Issue by: " + certagent);
+                userGreeting.setText(greet);
+                userName.setText(firstname + " " + lastname);
+                if (certlevel.equals("")){
+                    TextViewCompat.setAutoSizeTextTypeWithDefaults(userCertLevel,TextViewCompat.AUTO_SIZE_TEXT_TYPE_NONE);
+                    userCertLevel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                    userCertLevel.setText("N/A");
+                } else {
+                    TextViewCompat.setAutoSizeTextTypeWithDefaults(userCertLevel,TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+                    userCertLevel.setText(certlevel);
+                }
+                if (certnumber.equals("")){
+                    userCertNo.setText("N/A");
+                } else {
+                    userCertNo.setText(certnumber);
+                }
+                userCertAgent.setText(certagent);
                 userPhone.setText("Phone: " + phone);
+                if (profileImg.equals("")){
+                    profileImg = "https://ui-avatars.com/api/?size=300&rounded=true&name=" + firstname + "+" + lastname;
+                    Picasso.get().load(profileImg).into(profileImage);
+                } else {
+                    Picasso.get().load(profileImg).into(profileImage);
+                }
 
                 loadingBar.setVisibility(View.GONE);
+                userDetailLayout.setVisibility(View.VISIBLE);
+                userGreeting.setVisibility(View.VISIBLE);
                 userName.setVisibility(View.VISIBLE);
                 userEmail.setVisibility(View.VISIBLE);
                 userCertAgent.setVisibility(View.VISIBLE);

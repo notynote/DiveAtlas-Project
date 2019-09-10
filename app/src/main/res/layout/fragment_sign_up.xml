@@ -139,21 +139,25 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/text_input_regDiverCertAgent"
-            app:errorEnabled="true">
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/text_input_regDiverCertAgent"-->
+<!--            app:errorEnabled="true">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/regDiverCertAgent"
-                android:maxLength="50"
-                android:inputType="text" />
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="@string/regDiverCertAgent"-->
+<!--                android:maxLength="50"-->
+<!--                android:inputType="text" />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
+        <Spinner
+            android:id="@+id/agencyDropDown"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
         <Button
             android:id="@+id/signUpButton"

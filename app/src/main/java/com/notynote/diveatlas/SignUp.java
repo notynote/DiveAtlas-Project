@@ -13,8 +13,11 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.regex.Pattern;
 
 
-public class SignUp extends Fragment {
+public class SignUp extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^" +
             "(?=.*[0-9])" +         //at least 1 digit
@@ -57,6 +60,11 @@ public class SignUp extends Fragment {
     private Button signUpButton;
     private ProgressBar progressBar;
 
+    //Drop down agent
+    private Spinner agencySpinner;
+    private String selectedAgency;
+    private static final String[] agencies = {"BSAC", "CMAS", "IANTD", "NAUI", "PADI", "SDI", "SSI", "TDI", "Other"};
+
     //Firebase variable
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
@@ -80,8 +88,19 @@ public class SignUp extends Fragment {
         textInputPhone = view.findViewById(R.id.text_input_regPhone);
         textInputDiverCertLevel = view.findViewById(R.id.text_input_regDiverCertLevel);
         textInputDiverCertNumber = view.findViewById(R.id.text_input_regDiverCertNo);
-        textInputDiverCertAgent = view.findViewById(R.id.text_input_regDiverCertAgent);
+        //textInputDiverCertAgent = view.findViewById(R.id.text_input_regDiverCertAgent);
         progressBar = view.findViewById(R.id.signup_loading);
+
+        //drop down agency
+        agencySpinner = view.findViewById(R.id.agencyDropDown);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item,agencies);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        agencySpinner.setAdapter(adapter);
+        agencySpinner.setOnItemSelectedListener(this);
+
 
         //Assign Auth
         firebaseAuth = FirebaseAuth.getInstance();
@@ -139,9 +158,11 @@ public class SignUp extends Fragment {
                     String phone = textInputPhone.getEditText().getText().toString();
                     String certlevel = textInputDiverCertLevel.getEditText().getText().toString();
                     String certnumber = textInputDiverCertNumber.getEditText().getText().toString();
-                    String certagent = textInputDiverCertAgent.getEditText().getText().toString();
+                    //String certagent = textInputDiverCertAgent.getEditText().getText().toString();
+                    String certagent = selectedAgency;
+                    String image = "https://ui-avatars.com/api/?size=300&rounded=true&name=" + firstname + "+" + lastname;
 
-                    Userdata userdata = new Userdata(email,firstname,lastname,phone,certlevel,certnumber,certagent);
+                    Userdata userdata = new Userdata(email,firstname,lastname,phone,certlevel,certnumber,certagent, image);
 
                     //add information with child same as userID
                     dRef.child(userID).setValue(userdata);
@@ -211,6 +232,44 @@ public class SignUp extends Fragment {
         }
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (i) {
+            case 0:
+                this.selectedAgency = "BSAC";
+                break;
+            case 1:
+                this.selectedAgency = "CMAS";
+                break;
+            case 2:
+                this.selectedAgency = "IANTD";
+                break;
+            case 3:
+                this.selectedAgency = "NAUI";
+                break;
+            case 4:
+                this.selectedAgency = "PADI";
+                break;
+            case 5:
+                this.selectedAgency = "SDI";
+                break;
+            case 6:
+                this.selectedAgency = "SSI";
+                break;
+            case 7:
+                this.selectedAgency = "TDI";
+                break;
+            case 8:
+                this.selectedAgency = "Other";
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
 //    public void AddUserData(){
 //
 //        String email = textInputEmail.getEditText().getText().toString();
@@ -230,3 +289,4 @@ public class SignUp extends Fragment {
 //    }
 
 }
+

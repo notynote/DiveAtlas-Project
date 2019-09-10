@@ -19,4 +19,5 @@
     <string name="regDiverCertLevel">Diving Certification Levels (Optional)</string>
     <string name="regDiverCertAgent">Diving Certification Agency (Optional)</string>
     <string name="regPhone">Phone Number (Optional)</string>
+    <string name="notfoundtext">N/A</string>
 </resources>

@@ -9,11 +9,12 @@ public class Userdata {
     private String certLevel;
     private String certNo;
     private String certAgent;
+    private String imageUrl;
 
     public Userdata() {
     }
 
-    public Userdata(String email, String firstName, String lastName, String phone, String certLevel, String certNo, String certAgent) {
+    public Userdata(String email, String firstName, String lastName, String phone, String certLevel, String certNo, String certAgent, String image) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,6 +22,15 @@ public class Userdata {
         this.certLevel = certLevel;
         this.certNo = certNo;
         this.certAgent = certAgent;
+        this.imageUrl = image;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getEmail() {
