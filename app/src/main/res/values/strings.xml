@@ -13,11 +13,12 @@
     <string name="regUsername">Username</string>
     <string name="regPassword">Passsword</string>
     <string name="regEmail">Email</string>
-    <string name="regFirstName">First Name (Optional)</string>
-    <string name="regLastName">Last Name (Optional)</string>
+    <string name="regFirstName">First Name</string>
+    <string name="regLastName">Last Name</string>
     <string name="regDiverCertNo">Diving Certification Number (Optional)</string>
     <string name="regDiverCertLevel">Diving Certification Levels (Optional)</string>
     <string name="regDiverCertAgent">Diving Certification Agency (Optional)</string>
     <string name="regPhone">Phone Number (Optional)</string>
     <string name="notfoundtext">N/A</string>
+    <string name="letsSighUp">Don\'t have account? <u>Let\'s sign up</u></string>
 </resources>

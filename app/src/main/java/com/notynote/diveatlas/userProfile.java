@@ -72,9 +72,9 @@ public class userProfile extends Fragment {
         loadingBar.setVisibility(View.VISIBLE);
 
         userDataLayout = (LinearLayout)view.findViewById(R.id.userDataLayout);
-        userEmail = (TextView)view.findViewById(R.id.tvUserEmail);
+//        userEmail = (TextView)view.findViewById(R.id.tvUserEmail);
         userName = (TextView)view.findViewById(R.id.tvUserName);
-        userPhone = (TextView)view.findViewById(R.id.tvUserPhone);
+//        userPhone = (TextView)view.findViewById(R.id.tvUserPhone);
         userCertLevel = (TextView)view.findViewById(R.id.tvUserDiverLevel);
         userCertNo = (TextView)view.findViewById(R.id.tvUserDiveNumber);
         userCertAgent = (TextView)view.findViewById(R.id.tvUserDiveAgent);
@@ -84,6 +84,7 @@ public class userProfile extends Fragment {
         //image profile
         profileImage = view.findViewById(R.id.ProfileImage);
 
+        //greeting by time
         cal = Calendar.getInstance();
         timeOfDay = cal.get(Calendar.HOUR_OF_DAY);
 
@@ -136,7 +137,7 @@ public class userProfile extends Fragment {
                     userCertNo.setText(certnumber);
                 }
                 userCertAgent.setText(certagent);
-                userPhone.setText("Phone: " + phone);
+//                userPhone.setText("Phone: " + phone);
                 if (profileImg.equals("")){
                     profileImg = "https://ui-avatars.com/api/?size=300&rounded=true&name=" + firstname + "+" + lastname;
                     Picasso.get().load(profileImg).into(profileImage);
@@ -148,11 +149,11 @@ public class userProfile extends Fragment {
                 userDetailLayout.setVisibility(View.VISIBLE);
                 userGreeting.setVisibility(View.VISIBLE);
                 userName.setVisibility(View.VISIBLE);
-                userEmail.setVisibility(View.VISIBLE);
+//                userEmail.setVisibility(View.VISIBLE);
                 userCertAgent.setVisibility(View.VISIBLE);
                 userCertLevel.setVisibility(View.VISIBLE);
                 userCertNo.setVisibility(View.VISIBLE);
-                userPhone.setVisibility(View.VISIBLE);
+//                userPhone.setVisibility(View.VISIBLE);
                 userLogOut.setVisibility(View.VISIBLE);
             }
 
@@ -163,7 +164,7 @@ public class userProfile extends Fragment {
         });
 
         //set Infomation
-        userEmail.setText(firebaseUser.getEmail());
+//        userEmail.setText(firebaseUser.getEmail());
 
 
         userLogOut = (Button)view.findViewById(R.id.btnLogOut);

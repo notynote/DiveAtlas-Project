@@ -123,6 +123,10 @@ public class SignUp extends Fragment implements AdapterView.OnItemSelectedListen
                     return;
                 }
 
+                if (!validateFirstname() | !validateLastname()){
+                    return;
+                }
+
                 progressBar.setVisibility(View.VISIBLE);
 
                 //AddUserData();
@@ -228,6 +232,30 @@ public class SignUp extends Fragment implements AdapterView.OnItemSelectedListen
             return false;
         } else {
             textInputPassword.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateFirstname() {
+        String firstnameInput = textInputFirstName.getEditText().getText().toString().trim();
+
+        if (firstnameInput.isEmpty()){
+            textInputFirstName.setError("First Name can't be empty");
+            return false;
+        } else {
+            textInputFirstName.setError(null);
+            return true;
+        }
+    }
+
+    private boolean validateLastname() {
+        String lastnameInput = textInputLastName.getEditText().getText().toString().trim();
+
+        if (lastnameInput.isEmpty()){
+            textInputLastName.setError("Last Name can't be empty");
+            return false;
+        } else {
+            textInputLastName.setError(null);
             return true;
         }
     }
