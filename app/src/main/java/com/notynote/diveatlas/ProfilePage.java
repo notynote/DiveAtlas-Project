@@ -57,21 +57,6 @@ public class ProfilePage extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        Button signUp = (Button)view.findViewById(R.id.signUp);
-        //change frag on click
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                SignUp frag = new SignUp();
-                ft.replace(R.id.fragmentView, frag);
-                //backstack check with back button on device
-                ft.addToBackStack("com.notynote.week6class.oneFragment");
-                ft.commit();
-            }
-        });
-
         Button logIn = (Button)view.findViewById(R.id.logIn);
         logIn.setOnClickListener(new View.OnClickListener() {
 
@@ -106,6 +91,35 @@ public class ProfilePage extends Fragment {
                         }
                     }
                 });
+            }
+        });
+
+        Button signUp = (Button)view.findViewById(R.id.signUp);
+        //change frag on click
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                SignUp frag = new SignUp();
+                ft.replace(R.id.fragmentView, frag);
+                //backstack check with back button on device
+                ft.addToBackStack("com.notynote.week6class.oneFragment");
+                ft.commit();
+            }
+        });
+
+        Button forgetPassword = view.findViewById(R.id.forgotPwd);
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ResetPassword frag = new ResetPassword();
+                ft.replace(R.id.fragmentView, frag);
+                //backstack check with back button on device
+                ft.addToBackStack("com.notynote.week6class.oneFragment");
+                ft.commit();
             }
         });
 
