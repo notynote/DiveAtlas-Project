@@ -45,6 +45,7 @@ public class userProfile extends Fragment {
     TextView userCertNo;
     TextView userCertAgent;
     Button userLogOut;
+    Button editProfile;
     ProgressBar loadingBar;
     TextView userGreeting;
     RelativeLayout userDetailLayout;
@@ -155,6 +156,7 @@ public class userProfile extends Fragment {
                 userCertNo.setVisibility(View.VISIBLE);
 //                userPhone.setVisibility(View.VISIBLE);
                 userLogOut.setVisibility(View.VISIBLE);
+                editProfile.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -165,6 +167,19 @@ public class userProfile extends Fragment {
 
         //set Infomation
 //        userEmail.setText(firebaseUser.getEmail());
+
+        editProfile = view.findViewById(R.id.btnEditProfile);
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //redirect back to log in page
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                editProfile frag = new editProfile();
+                ft.replace(R.id.fragmentView, frag);
+                ft.commit();
+            }
+        });
 
 
         userLogOut = (Button)view.findViewById(R.id.btnLogOut);
