@@ -24,6 +24,12 @@ public class Maps extends Fragment implements OnMapReadyCallback, GoogleMap.OnIn
     private GoogleMap mMap;
     private MapView mapView;
 
+    LatLng Pak1 = new LatLng(12.0917,101.6822);
+    LatLng Hardeep = new LatLng(12.5425,100.9624);
+    LatLng KohRang = new LatLng(11.8056, 102.3911);
+    LatLng HinLukBat = new LatLng(11.943944636888816, 102.27224349975586);
+    LatLng ChangWreck = new LatLng(11.90044339282193, 102.25919723510744);
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,11 +47,6 @@ public class Maps extends Fragment implements OnMapReadyCallback, GoogleMap.OnIn
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng Pak1 = new LatLng(12.0917,101.6822);
-        LatLng Hardeep = new LatLng(12.5425,100.9624);
-        LatLng KohRang = new LatLng(11.8056, 102.3911);
-        LatLng HinLukBat = new LatLng(11.943944636888816, 102.27224349975586);
-        LatLng ChangWreck = new LatLng(11.90044339282193, 102.25919723510744);
         //mMap.addMarker(new MarkerOptions().position(Pak1).title("Pak-1 wreck").snippet("Type: Wreck\nDepth: 30 - 42 meters"));
 
         Marker pak1 = mMap.addMarker(new MarkerOptions().position(Pak1).title("Pak-1").snippet("Coor: 12.0917,101.6822"));
