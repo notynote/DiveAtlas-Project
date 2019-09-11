@@ -29,7 +29,7 @@ public class DiveSiteHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Click Event
+                Toast.makeText(view.getContext(), txtName.getText() + " clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }
