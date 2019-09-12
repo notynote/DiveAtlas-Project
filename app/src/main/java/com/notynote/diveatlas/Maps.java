@@ -1,11 +1,23 @@
 package com.notynote.diveatlas;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +27,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -23,9 +37,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 public class Maps extends Fragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
@@ -65,6 +87,71 @@ public class Maps extends Fragment implements OnMapReadyCallback, GoogleMap.OnIn
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        try {
+            // Customise the styling of the base map using a JSON object defined
+            // in a raw resource file.
+            boolean success = googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                            getActivity(), R.raw.style_json));
+
+            if (!success) {
+                Log.e(TAG, "Style parsing failed.");
+            }
+        } catch (Resources.NotFoundException e) {
+            Log.e(TAG, "Can't find style. Error: ", e);
+        }
+
+        Dexter.withActivity(getActivity())
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                )
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+
+                        if (report.isAnyPermissionPermanentlyDenied()){
+                            showSettingsDialog();
+                        }
+
+                        if (report.areAllPermissionsGranted()) {
+
+                            LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+                            Criteria criteria = new Criteria();
+
+                            @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+
+                            if(location != null) {
+
+                                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));
+
+                                CameraPosition cameraPosition = new CameraPosition.Builder()
+                                        .target(new LatLng(location.getLatitude(), location.getLongitude()))      // Sets the center of the map to location user
+                                        .zoom(8)
+                                        .bearing(0)
+                                        .tilt(0)
+                                        .build();
+                                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+                            }
+
+
+                        } else {
+                            showSettingsDialog();
+                        }
+
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+
+                        token.continuePermissionRequest();
+
+                    }
+                })
+                .check();
+
         final String[] diveSitesName = {"Pak-1", "Hardeep Wreck", "Koh Rang", "Hin Luk Bat", "HTMS Chang Wreck"};
 
         dRef.addValueEventListener(new ValueEventListener() {
@@ -96,10 +183,6 @@ public class Maps extends Fragment implements OnMapReadyCallback, GoogleMap.OnIn
         //show Info Windows by default
         //pak1.showInfoWindow();
 
-        //set default camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(KohRang));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(5), 2000, null);
-
         //activate onInfoWindowClickListener
         mMap.setOnInfoWindowClickListener(this);
     }
@@ -120,6 +203,35 @@ public class Maps extends Fragment implements OnMapReadyCallback, GoogleMap.OnIn
         map.addMarker(new MarkerOptions().position(new LatLng(lat, lon))
                 .title(title)
                 .snippet(snippet));
+    }
+
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Need Permissions");
+        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
+        builder.setPositiveButton("GOTO SETTINGS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                openSettings();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
+    }
+
+    // navigating user to app settings
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+        intent.setData(uri);
+        startActivityForResult(intent, 101);
     }
 
 }

@@ -17,13 +17,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         EasySplashScreen config = new EasySplashScreen(SplashScreenActivity.this)
                 .withFullScreen()
                 .withTargetActivity(MainActivity.class)
-                .withSplashTimeOut(3000)
+                .withSplashTimeOut(2000)
                 .withBackgroundColor(Color.parseColor("#1a1b29"))
                 .withHeaderText("")
                 .withFooterText("")
-                .withBeforeLogoText("")
-                .withAfterLogoText("Dive Atlas")
-                .withLogo(R.mipmap.ic_launcher);
+                .withBeforeLogoText("LOADING. . .")
+                .withAfterLogoText("DIVE ATLAS");
+//                .withLogo(R.mipmap.ic_launcher);
 
         config.getHeaderTextView().setTextColor(Color.WHITE);
         config.getFooterTextView().setTextColor(Color.WHITE);
