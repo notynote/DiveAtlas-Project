@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA"
+    android:background="@color/colorPrimaryDark"
     tools:context=".ProfilePage"
     android:padding="16dp">
 
@@ -17,6 +17,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:tint="#FAFAFA"
             android:src="@mipmap/ic_launcher_foreground" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -28,6 +29,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FAFAFA"
+                android:textColor="#FAFAFA"
                 android:hint="@string/regEmail"
                 android:inputType="textEmailAddress" />
 
@@ -44,6 +47,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FAFAFA"
+                android:textColor="#FAFAFA"
                 android:hint="@string/regPassword"
                 android:maxLength="20"
                 android:inputType="textPassword" />
@@ -80,6 +85,7 @@
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FAFAFA"
             android:text="@string/letsSighUp"/>
 
 
@@ -88,6 +94,8 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorLightBlue"
+            android:textColor="#FFFFFF"
             android:padding="16dp"
             android:id="@+id/signUp"
             android:text="Sign Up"/>
@@ -98,6 +106,7 @@
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FAFAFA"
             android:text="@string/forgetPassword"/>
 
 
@@ -106,6 +115,7 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorGreen"
             android:padding="16dp"
             android:id="@+id/forgotPwd"
             android:text="Reset Password"/>

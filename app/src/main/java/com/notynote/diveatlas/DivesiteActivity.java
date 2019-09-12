@@ -93,9 +93,9 @@ public class DivesiteActivity extends AppCompatActivity implements OnMapReadyCal
                 String diveSiteDepth = String.valueOf(map.get("diveSiteDepth"));
 
                 nameText.setText(diveSiteNameKeep);
-                typeText.setText(diveSiteType);
-                depthText.setText(diveSiteDepth);
-                coorText.setText(diveSiteCoor);
+                typeText.setText("Type: " + diveSiteType);
+                depthText.setText("Depth: " + diveSiteDepth + " meter");
+                coorText.setText("Location: " + diveSiteCoor);
                 descText.setText(diveSiteBio);
 
             }

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".userProfile"
-    android:background="#FAFAFA"
+    android:background="#191C2F"
     android:orientation="vertical">
 
     <LinearLayout
@@ -57,7 +57,8 @@
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="16dp"
                 android:layout_height="120dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="275dp"
@@ -189,6 +190,8 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorLightBlue"
+                android:textColor="#FFFFFF"
                 android:text="Edit Profile"
                 android:visibility="invisible"/>
 

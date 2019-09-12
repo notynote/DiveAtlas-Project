@@ -66,7 +66,7 @@ public class DiveSiteAdapter extends RecyclerView.Adapter<DiveSiteAdapter.DiveSi
 
     public class DiveSiteHolder extends RecyclerView.ViewHolder {
 
-        private TextView txtName, txtType, txtDepth, txtCoor, txtBio;
+        private TextView txtName, txtType, txtDepth;
         private Context context;
         protected ImageView imageView;
 
@@ -75,8 +75,6 @@ public class DiveSiteAdapter extends RecyclerView.Adapter<DiveSiteAdapter.DiveSi
             txtName = itemView.findViewById(R.id.txtName);
             txtType = itemView.findViewById(R.id.txtType);
             txtDepth = itemView.findViewById(R.id.txtDepth);
-            txtCoor = itemView.findViewById(R.id.txtCoor);
-            txtBio = itemView.findViewById(R.id.txtBio);
             imageView = itemView.findViewById(R.id.rImageVIew);
 
             itemView.setOnClickListener(DiveSiteAdapter.this);
@@ -93,8 +91,6 @@ public class DiveSiteAdapter extends RecyclerView.Adapter<DiveSiteAdapter.DiveSi
             txtName.setText(diveSiteInfo.getDiveSiteName());
             txtType.setText("Type : " + diveSiteInfo.getDiveSiteType());
             txtDepth.setText("Depth : " + diveSiteInfo.getDiveSiteDepth() + " meters");
-            txtCoor.setText("Coordinate : " + diveSiteInfo.getDiveSiteCoor());
-            txtBio.setText(diveSiteInfo.getDiveSiteBio());
             Picasso.get().load(diveSiteInfo.getImage()).into(imageView);
         }
 

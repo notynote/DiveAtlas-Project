@@ -89,7 +89,7 @@ public class DiveSite extends Fragment {
     }
 
     private void createListData() {
-        String defaultImage = "https://firebasestorage.googleapis.com/v0/b/diveatlas-project.appspot.com/o/dive%20atlas%20dive%20site%20default.png?alt=media&token=d73e414a-5c4b-414b-993e-440512255899";
+        String defaultImage = "https://firebasestorage.googleapis.com/v0/b/diveatlas-project.appspot.com/o/noImgiveSite.png?alt=media&token=cafa3b41-fc9c-4a6c-99b3-ec62bc826f57";
 
         DiveSiteInfo diveSiteAdd = new DiveSiteInfo("Pak-1","Wreck","30 to 42","12.0917,101.6822","The Koho Maru-5 tanker sank first Aug 25, 1996, 50 kilometers west of Koh Chang.", defaultImage, 12.0917,101.6822);
         diveSiteInfoArrayList.add(diveSiteAdd);

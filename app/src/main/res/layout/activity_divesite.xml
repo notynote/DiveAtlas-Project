@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA"
+    android:background="@color/colorPrimaryDark"
     tools:context=".DivesiteActivity">
 
     <LinearLayout
@@ -16,16 +16,17 @@
             android:id="@+id/diveSiteMap"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="15dp"/>
+            android:layout_gravity="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#FAFAFA"
             android:orientation="vertical"
-            android:padding="10dp" >
+            android:padding="15dp" >
 
             <TextView
+                android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,6 +58,17 @@
 
             <TextView
                 android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/diveSitePageTxtDescTitle"
+                android:text="@string/DescTitle"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/diveSitePageTxtDesc"

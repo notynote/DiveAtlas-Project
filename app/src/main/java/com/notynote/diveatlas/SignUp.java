@@ -1,6 +1,7 @@
 package com.notynote.diveatlas;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -18,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -262,6 +264,10 @@ public class SignUp extends Fragment implements AdapterView.OnItemSelectedListen
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        //change text color
+        ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+
         switch (i) {
             case 0:
                 this.selectedAgency = "BSAC";

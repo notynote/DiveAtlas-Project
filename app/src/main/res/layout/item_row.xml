@@ -26,6 +26,7 @@
         android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
         android:padding="1dp"
         android:textSize="18sp" />
     <TextView
@@ -35,16 +36,6 @@
         android:padding="1dp" />
     <TextView
         android:id="@+id/txtDepth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="1dp" />
-    <TextView
-        android:id="@+id/txtCoor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="1dp" />
-    <TextView
-        android:id="@+id/txtBio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="1dp" />

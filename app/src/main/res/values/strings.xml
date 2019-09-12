@@ -22,4 +22,6 @@
     <string name="notfoundtext">N/A</string>
     <string name="letsSighUp">Don\'t have account? <u>Let\'s sign up</u></string>
     <string name="forgetPassword">Forgot Password?</string>
+    <string name="DescTitle"><u>Description:</u></string>
+    <string name="search">Search</string>
 </resources>

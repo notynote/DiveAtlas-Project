@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FAFAFA"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     >
 
@@ -41,6 +41,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FAFAFA"
+                android:textColor="#FAFAFA"
                 android:hint="@string/regEmail"
                 android:inputType="textEmailAddress" />
 
@@ -58,6 +60,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/regPassword"
+                android:backgroundTint="#FAFAFA"
+                android:textColor="#FAFAFA"
                 android:maxLength="20"
                 android:inputType="textPassword" />
 
@@ -72,6 +76,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FAFAFA"
+                android:textColor="#FAFAFA"
                 android:hint="@string/regFirstName"
                 android:maxLength="30"
                 android:inputType="textPersonName" />
@@ -87,6 +93,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FAFAFA"
+                android:textColor="#FAFAFA"
                 android:hint="@string/regLastName"
                 android:maxLength="30"
                 android:inputType="textPersonName" />
@@ -102,6 +110,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FAFAFA"
+                android:textColor="#FAFAFA"
                 android:hint="@string/regPhone"
                 android:maxLength="20"
                 android:inputType="textPhonetic" />
@@ -122,6 +132,7 @@
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#FAFAFA"
             android:textSize="18sp"
             android:text="Certification agencies"/>
 
@@ -141,6 +152,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FAFAFA"
+                android:textColor="#FAFAFA"
                 android:hint="@string/regDiverCertLevel"
                 android:maxLength="50"
                 android:inputType="text" />
@@ -157,6 +170,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#FAFAFA"
+                android:textColor="#FAFAFA"
                 android:hint="@string/regDiverCertNo"
                 android:maxLength="50"
                 android:inputType="text" />
