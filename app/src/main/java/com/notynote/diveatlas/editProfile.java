@@ -155,7 +155,12 @@ public class editProfile extends Fragment implements AdapterView.OnItemSelectedL
                 imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
 
                 FragmentManager fm = getFragmentManager();
-                fm.popBackStack();
+                FragmentTransaction ft = fm.beginTransaction();
+                userProfile frag = new userProfile();
+                ft.replace(R.id.fragmentView, frag);
+                //backstack check with back button on device
+                ft.addToBackStack("com.notynote.week6class.oneFragment");
+                ft.commit();
 
             }
         });
