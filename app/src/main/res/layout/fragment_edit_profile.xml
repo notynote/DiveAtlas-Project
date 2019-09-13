@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryDark"
+    android:id="@+id/editProfileMainLayout"
     android:orientation="vertical"
     tools:context=".editProfile">
 
@@ -101,6 +102,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Edit Profile"/>
+
+        <Button
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/colorLightBlue"
+            android:textColor="#FAFAFA"
+            android:id="@+id/editProfileBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back"/>
 
         <ProgressBar
             android:id="@+id/editprofile_loading"

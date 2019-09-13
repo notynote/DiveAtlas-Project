@@ -1,6 +1,7 @@
 package com.notynote.diveatlas;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,8 +13,12 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
+import android.widget.Scroller;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +31,8 @@ import java.util.regex.Pattern;
 
 
 public class ProfilePage extends Fragment {
+
+    ScrollView mainLayout;
 
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^" +
             "(?=.*[0-9])" +         //at least 1 digit
@@ -50,6 +57,11 @@ public class ProfilePage extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile_page, container, false);
 
+        mainLayout = view.findViewById(R.id.profilePageMainLayout);
+
+        //hide keyboard when startup
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         progressBar = view.findViewById(R.id.profilepage_loading);
 
         textEmail = view.findViewById(R.id.text_input_logEmail);
@@ -67,6 +79,10 @@ public class ProfilePage extends Fragment {
                 if (!validateEmail() | !validatePassword()){
                     return;
                 }
+
+                //hide keyboard
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
 
                 //show progressbar
                 progressBar.setVisibility(View.VISIBLE);
@@ -99,6 +115,11 @@ public class ProfilePage extends Fragment {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //hide keyboard
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
+
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 SignUp frag = new SignUp();
@@ -113,6 +134,11 @@ public class ProfilePage extends Fragment {
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //hide keyboard
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
+
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 ResetPassword frag = new ResetPassword();

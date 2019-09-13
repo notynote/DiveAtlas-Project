@@ -14,10 +14,12 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +41,8 @@ import java.util.regex.Pattern;
 
 public class SignUp extends Fragment implements AdapterView.OnItemSelectedListener {
 
+    ScrollView mainLayout;
+
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^" +
             "(?=.*[0-9])" +         //at least 1 digit
             "(?=.*[a-z])" +         //at least 1 lower case letter
@@ -59,7 +63,7 @@ public class SignUp extends Fragment implements AdapterView.OnItemSelectedListen
     private TextInputLayout textInputDiverCertLevel;
     private TextInputLayout textInputDiverCertNumber;
     private TextInputLayout textInputDiverCertAgent;
-    private Button signUpButton;
+    private Button signUpButton, back;
     private ProgressBar progressBar;
 
     //Drop down agent
@@ -80,6 +84,12 @@ public class SignUp extends Fragment implements AdapterView.OnItemSelectedListen
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+
+        mainLayout = view.findViewById(R.id.signUpMainLayout);
+
+        //hide keyboard
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
 
         //Assign UI
         //textInputUsername = view.findViewById(R.id.text_input_regUser);
@@ -129,6 +139,10 @@ public class SignUp extends Fragment implements AdapterView.OnItemSelectedListen
                     return;
                 }
 
+                //hide keyboard
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
+
                 progressBar.setVisibility(View.VISIBLE);
 
                 //AddUserData();
@@ -136,6 +150,21 @@ public class SignUp extends Fragment implements AdapterView.OnItemSelectedListen
                 CreateNewAccount();
             }
 
+        });
+
+        back = view.findViewById(R.id.signUpBack);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //hide keyboard
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
+
+                FragmentManager fm = getFragmentManager();
+                fm.popBackStack();
+
+            }
         });
 
         return view;
@@ -175,10 +204,7 @@ public class SignUp extends Fragment implements AdapterView.OnItemSelectedListen
 
                     //if success then redirect
                     FragmentManager fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    userProfile frag = new userProfile();
-                    ft.replace(R.id.fragmentView, frag);
-                    ft.commit();
+                    fm.popBackStack();
 
                 } else {
                     String errorMessage = task.getException().toString();

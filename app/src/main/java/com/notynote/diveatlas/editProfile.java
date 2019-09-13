@@ -12,10 +12,13 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +34,8 @@ import java.util.Map;
 
 
 public class editProfile extends Fragment implements AdapterView.OnItemSelectedListener {
+
+    ScrollView mainLayout;
 
     private TextInputLayout textInputPhone;
     private TextInputLayout textInputDiverCertLevel;
@@ -55,6 +60,11 @@ public class editProfile extends Fragment implements AdapterView.OnItemSelectedL
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
+
+        mainLayout = view.findViewById(R.id.editProfileMainLayout);
+
+        //hide keyboard when startup
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //Assign UI
         textInputPhone = view.findViewById(R.id.text_input_editPhone);
@@ -84,6 +94,11 @@ public class editProfile extends Fragment implements AdapterView.OnItemSelectedL
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //hide keyboard
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
+
                 progressBar.setVisibility(View.VISIBLE);
 
                 //get UserID to implement as the id on the database aswell
@@ -123,7 +138,24 @@ public class editProfile extends Fragment implements AdapterView.OnItemSelectedL
                 FragmentTransaction ft = fm.beginTransaction();
                 userProfile frag = new userProfile();
                 ft.replace(R.id.fragmentView, frag);
+                //backstack check with back button on device
+                ft.addToBackStack("com.notynote.week6class.oneFragment");
                 ft.commit();
+
+            }
+        });
+
+        Button back = view.findViewById(R.id.editProfileBack);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //hide keyboard
+                InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
+
+                FragmentManager fm = getFragmentManager();
+                fm.popBackStack();
 
             }
         });
