@@ -15,6 +15,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -131,7 +132,7 @@ public class DivesiteActivity extends AppCompatActivity implements OnMapReadyCal
 
                 LatLng diveSitePosition = new LatLng(lat,lng);
 
-                Marker diveSiteMarker = mMap.addMarker(new MarkerOptions().position(diveSitePosition).title(diveSiteNameKeep).snippet("Coor: " + diveSiteCoor));
+                Marker diveSiteMarker = mMap.addMarker(new MarkerOptions().position(diveSitePosition).title(diveSiteNameKeep).snippet("Coor: " + diveSiteCoor).icon(BitmapDescriptorFactory.fromResource(R.drawable.diveatlaspin50x50)));
 
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(diveSitePosition));
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
