@@ -2,6 +2,7 @@ package com.notynote.diveatlas;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class DiveSiteAdapter extends RecyclerView.Adapter<DiveSiteAdapter.DiveSiteHolder> implements View.OnClickListener {
 
@@ -92,6 +95,8 @@ public class DiveSiteAdapter extends RecyclerView.Adapter<DiveSiteAdapter.DiveSi
             txtType.setText("Type : " + diveSiteInfo.getDiveSiteType());
             txtDepth.setText("Depth : " + diveSiteInfo.getDiveSiteDepth() + " meters");
             Picasso.get().load(diveSiteInfo.getImage()).into(imageView);
+
+            Log.e(TAG, diveSiteInfo.diveSiteName);
         }
 
     }
